@@ -9,7 +9,6 @@ services:
       - "443:443"
     volumes:
       - ./nginx:/etc/nginx/conf.d
-      - ./well-known:/well-known
       - /etc/letsencrypt:/etc/letsencrypt
     depends_on:
       - main
