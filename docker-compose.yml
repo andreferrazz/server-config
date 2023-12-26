@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./well-known:/well-known
+      - /etc/letsencrypt:/etc/letsencrypt
+    depends_on:
+      - main
+      - naruto
+      - sasuke
+
+  naruto:
+    image: simple-web-api:latest
+    container_name: naruto
+    hostname: naruto
+    environment:
+      APP_NAME: Naruto
+
+  sasuke:
+    image: simple-web-api:latest
+    container_name: sasuke
+    hostname: sasuke
+    environment:
+      APP_NAME: Sasuke
+
+  main:
+    image: simple-web-api:latest
+    container_name: main
+    hostname: main
+    environment:
+      APP_NAME: Main
