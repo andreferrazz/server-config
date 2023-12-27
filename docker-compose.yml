@@ -29,9 +29,7 @@ services:
     environment:
       APP_NAME: Sasuke
 
-  main:
-    image: simple-web-api:latest
-    container_name: main
-    hostname: main
-    environment:
-      APP_NAME: Main
+  portfolio:
+    image: andreferrazz/portfolio:latest
+    container_name: portfolio
+    hostname: portfolio
