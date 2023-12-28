@@ -50,3 +50,5 @@ jobs:
             docker stop server || true
             docker rm server || true
             docker run -d --name server -h server --net server -p 80:80 -p 443:443 -v /etc/letsencrypt:/etc/letsencrypt andreferrazz/server:main
+            docker image prune -f
+
