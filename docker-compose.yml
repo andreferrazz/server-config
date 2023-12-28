@@ -1,20 +1,24 @@
-version: '3'
+version: "3"
 
 services:
-  nginx:
-    image: nginx:latest
-    container_name: nginx
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./nginx:/etc/nginx/conf.d
-      - /etc/letsencrypt:/etc/letsencrypt
-    depends_on:
-      - portfolio
-      - naruto
-      - sasuke
+   server:
+     image: andreferrazz/server:main
+     container_name: server
+     hostname: server
+     ports:
+       - "80:80"
+       - "443:443"
+     volumes:
+       - /etc/letsencrypt:/etc/letsencrypt
+     depends_on:
+       - portfolio
+       - naruto
 
+  portfolio:
+    image: andreferrazz/portfolio:main
+    container_name: portfolio
+    hostname: portfolio
+  
   naruto:
     image: simple-web-api:latest
     container_name: naruto
@@ -22,14 +26,3 @@ services:
     environment:
       APP_NAME: Naruto
 
-  sasuke:
-    image: simple-web-api:latest
-    container_name: sasuke
-    hostname: sasuke
-    environment:
-      APP_NAME: Sasuke
-
-  portfolio:
-    image: andreferrazz/portfolio:latest
-    container_name: portfolio
-    hostname: portfolio
